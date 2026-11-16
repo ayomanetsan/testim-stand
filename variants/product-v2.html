@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ноутбук Aurora 14</title>
+<style>
+:root{--ink:#1d2433;--muted:#5b6475;--line:#d5dae3;--bg:#f6f7f9;--surface:#fff;--brand:#1f5fd1;--brand-ink:#fff;--ok:#1d7a46;--err:#b42318}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.5 "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+header.site{background:var(--surface);border-bottom:1px solid var(--line);padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+header.site a{color:var(--ink);text-decoration:none;font-weight:600}
+main{max-width:960px;margin:32px auto;padding:0 20px}
+h1{font-size:1.6rem;margin:0 0 16px}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid #8fb3f5;outline-offset:2px}
+.msg{margin-top:16px;padding:10px 14px;border-radius:6px;display:none}
+.msg.show{display:block}
+.msg.ok{background:#e3f4ea;color:var(--ok)}
+.msg.err{background:#fde8e6;color:var(--err)}
+.ver{font-size:.8rem;color:var(--muted)}
+
+.product{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;display:grid;grid-template-columns:200px 1fr;gap:24px}
+.ph{background:#e7ebf2;border-radius:8px;aspect-ratio:1;display:grid;place-items:center;color:var(--muted)}
+.price{font-size:1.5rem;font-weight:700;margin:8px 0 16px}
+.recs{margin-top:32px}
+.recs ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.recs li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px}
+.btn-buy{background:var(--brand);color:#fff;border:0;border-radius:6px;padding:10px 22px;font-weight:600}
+.btn-buy--small{padding:6px 14px;font-size:.9rem;margin-top:8px}
+@media(max-width:600px){.product{grid-template-columns:1fr}}
+
+.product-cta{background:#0f3d8a;color:#fff;border:0;border-radius:20px;padding:10px 26px;font-weight:600}
+</style></head>
+<body>
+<header class="site"><a href="index.html">Лабораторний стенд Testim</a><span class="ver">product v2 — текст «Додати до кошика», нові селектори; кнопки «Купити» лишились лише в рекомендаціях</span></header>
+<main>
+
+<article class="product">
+  <div class="ph">фото</div>
+  <div class="purchase-panel">
+    <h1>Ноутбук Aurora 14</h1>
+    <p>14", 16 ГБ RAM, 1 ТБ SSD</p>
+    <div class="price">42 999 грн</div>
+    <div class="cta-row"><button id="add-to-cart" class="product-cta" data-product="Ноутбук Aurora 14">Додати до кошика</button></div>
+  </div>
+</article>
+<section class="recs">
+  <h2>Рекомендовані товари</h2>
+  <ul>
+    <li><strong>Чохол Aurora Sleeve</strong><div>1 199 грн</div>
+      <button class="btn-buy btn-buy--small" data-product="Чохол Aurora Sleeve">Купити</button></li>
+    <li><strong>Зарядний пристрій 65 Вт</strong><div>1 499 грн</div>
+      <button class="btn-buy btn-buy--small" data-product="Зарядний пристрій 65 Вт">Купити</button></li>
+  </ul>
+</section>
+<div id="cart-msg" class="msg ok" role="status"></div>
+</main>
+<script>
+document.querySelectorAll('[data-product]').forEach(function(b){
+  b.addEventListener('click', function(){
+    var m=document.getElementById('cart-msg');
+    m.textContent='У кошику: '+b.getAttribute('data-product'); m.classList.add('show');
+  });
+});
+</script>
+</body></html>
